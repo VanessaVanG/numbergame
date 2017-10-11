@@ -1,0 +1,52 @@
+import random 
+
+#make a game function
+def game():
+    #generate a random number 1-10
+    guess = random.randint(1, 10)
+
+    #make a list for the computer's guesses
+    guesses = []
+
+    #limit the number of guesses
+    while len(guesses) < 5:
+        #the computer gives its guess
+        answer = input("Is your number {}? Enter yes or no. ".format(guess))
+        #Correct Answer
+        if answer == 'yes':
+            print("Yay! I'm the best!!!!!")
+            break
+        #Incorrect Answer
+        else:
+            # #Account for guess = 10
+            # if guess == 10:
+                # new_guess = random.randint(1, 9)
+            # #Account for guess = 1
+            # elif guess == 1:
+                # new_guess = random.randint(2, 10)
+            
+            #Ask if number is higher than guess
+            is_higher = input("Is your number higher than {}? Enter yes or no. ".format(guess))
+            #Higher
+            if is_higher == "yes":
+                new_guess = random.randint((guess + 1), 10)
+            #Lower
+            else:
+                new_guess = random.randint(1, (guess - 1))
+            #add previous guess to list
+            guesses.append(guess)
+            #make new_guess the guess
+            guess = new_guess
+
+    #Losing statement
+    else:
+        print("I lost. I couldn't guess your number :(")
+
+    #Give player a chance to play again
+    play_again = input("Do you want to play again? Y/n ")
+    if play_again.lower() != 'n':
+        game()
+    else:
+        print("Bye!")
+
+game()
